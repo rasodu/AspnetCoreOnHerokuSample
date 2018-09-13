@@ -16,7 +16,7 @@
   ```
 - How can I run locally built image?
   ```
-  docker run --rm -it --expose=5000 -p=5000:5000 -e="PORT=5000" --net="host" web
+  docker run --rm -it --expose=5000 -p=5000:5000 -e="PORT=5000" --net="host" web /bin/bash -c "cd Webapp/bin/Release/netcoreapp2.1/ && ASPNETCORE_URLS=http://*:$PORT dotnet Webapp.dll"
   ```
 - How can I run worker locally?
   ```
