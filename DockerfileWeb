@@ -5,5 +5,5 @@ RUN dotnet publish -c Release
 
 FROM microsoft/dotnet:2.1-aspnetcore-runtime
 WORKDIR /app
-COPY --from=builder /appsrc/src/Webapp/bin/Release/netcoreapp2.1/ .
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet Webapp.dll
+COPY --from=builder /appsrc/src/ .
+CMD echo "Please give explicit command to run the image."

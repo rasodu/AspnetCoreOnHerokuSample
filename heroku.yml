@@ -1,3 +1,9 @@
 build:
   docker:
     web: DockerfileWeb
+run:
+  web: /bin/bash -c "cd Webapp/bin/Release/netcoreapp2.1/ && ASPNETCORE_URLS=http://*:$PORT dotnet Webapp.dll"
+  worker1:
+    command:
+      - /bin/bash -c "cd Worker1/bin/Release/netcoreapp2.1/ && dotnet Worker1.dll"
+    image: web
