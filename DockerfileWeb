@@ -5,5 +5,7 @@ RUN dotnet publish -c Release
 
 FROM microsoft/dotnet:2.1-aspnetcore-runtime
 WORKDIR /app
-COPY --from=builder /appsrc/src/ .
+COPY --from=builder /appsrc/src/ src
+COPY heroku-release-phase.sh .
+RUN tr -d '\015' < heroku-release-phase.sh > heroku-release-phase.sh && chmod 777 heroku-release-phase.sh
 CMD echo "Please give explicit command to run the image."
