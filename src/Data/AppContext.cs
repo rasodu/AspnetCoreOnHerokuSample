@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
-    class AppContext : DbContext
+    public class AppContext : DbContext
     {
         public AppContext(DbContextOptions<AppContext> options)
             : base(options)

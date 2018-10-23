@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Data.Models
 {
     [Table("TestTableRecords")]
-    class TestTableRecord
+    public class TestTableRecord
     {
         [Key]
         public int TestTableRecordId { get; set; }
