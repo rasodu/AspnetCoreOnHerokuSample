@@ -7,5 +7,5 @@ if [ -z "$DefaultConnectionAutoMigrate" ]
 then
     echo "DB migrations are not enabled."
 else
-    cd src/Webapp/ && dotnet ef database update
+    cd src/Webapp/ && dotnet restore && dotnet ef database update
 fi
