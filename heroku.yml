@@ -1,6 +1,9 @@
 build:
   docker:
     web: DockerfileWeb
+    webbuilder:
+      dockerfile: DockerfileWeb
+      target: builder
 run:
   web:
     image: web
@@ -11,6 +14,6 @@ run:
     command:
       - /bin/bash -c "cd src/Worker1/bin/Release/netcoreapp2.1/publish/ && dotnet Worker1.dll"
 release:
-  image: web
+  image: webbuilder
   command:
     - ./heroku-release-phase.sh
