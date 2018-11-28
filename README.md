@@ -1,10 +1,8 @@
 ### Deploy on Heroku
 - Clone the project to your computer: ```git clone "git@github.com:rasodu/AspnetCoreOnHerokuSample.git"```
 - Create new app in Heroku ```heroku apps:create <app-name>```
-- Set "Config Vars" for Heroku application:
+- Set "Config Vars" for the Heroku application:
   ```
-  ConnectionStrings__DefaultConnection=Host=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;Database=xxxxxxxxxxxxxx;Username=xxxxxxxxxxxxxx;Password=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;Integrated Security=true;Pooling=true;SslMode=Require;Trust Server Certificate=true;
-  DefaultConnectionAutoMigrate=Enabled
   Logging__LogLevel__Default=Information
   Logging__LogLevel__Microsoft=Warning
   Logging__LogLevel__System=Warning
@@ -16,6 +14,14 @@
 - Scale worker dyno: ```heroku ps:scale worker1=1```
 - Verify worker and web dynos are running: ```heroku ps```
 - Open website: ```heroku open```
+
+### Enable automatic migration on deployment
+- Add 'Heroku Postgres' addin to the Heroku project
+- Set additional "Config Vars" for the Heroku application:
+  ```
+  ConnectionStrings__DefaultConnection=Host=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;Database=xxxxxxxxxxxxxx;Username=xxxxxxxxxxxxxx;Password=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;Integrated Security=true;Pooling=true;SslMode=Require;Trust Server Certificate=true;
+  DefaultConnectionAutoMigrate=Enabled
+  ```
 
 ### Faq
 - Which files do I need to copy to my project?
