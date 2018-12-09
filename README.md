@@ -38,5 +38,3 @@
   ```
   docker run --rm -it -e="ASPNETCORE_ENVIRONMENT=Development" web /bin/bash -c "cd src/Worker1/bin/Release/netcoreapp2.1/publish/ && dotnet Worker1.dll"
   ```
-
-**Note: Project is inspired by [Ikechi Michael](https://blog.devcenter.co/deploy-asp-net-core-2-0-apps-on-heroku-eea8efd918b6) article. This project couldn't have been possible had he not shared his knowledge.**
