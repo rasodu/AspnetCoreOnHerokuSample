@@ -1,15 +1,4 @@
 ### Stories
-- Add implementation for background tasks. There are two ways to implement background tasks. Advantages and disadvantages for each technique are discussed below. We want to provide developers with fastest and easiest way to deploy the initial implementation of their ideas. You can easily move to more advanced approach once you validate you idea and have more resources.
-  1. Background tasks will be run in a web dyno. We have opted for this approach. [More info](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-2.2)
-     - If the dyno doesn't receive traffic for 30 minutes, then the dyno will goto sleep even though the background process is running.
-  1. Worker dyno to run background tasks in separate process.
-     - Disadvantages
-       - Currently there is no way to run only background tasks in the web project. Or to instruct project to start only web host.
-       - So, we have to add a new project and create separate assembly. We will also have to create service container in both the projects. This will create complexity and it will take more time to develop.
-     - Advantages
-       - This will allow logs for web and background process to stay isolated.
-       - Failure of one thread will not effect the other threads.
-       - You can scale web and worker independently.
 - Should enable Docker support in visual studio project. So, the developers will not need to download .NET SDK to development on their machine.
   - **Will not be implemented yet.** Looks like Visual Studio support for Docker is in primitive stage. Currently, there is no way to run and debug unit tests in Docker container. More, [here](https://techblog.dorogin.com/running-and-debugging-net-core-unit-tests-inside-docker-containers-48476eda2d2a) and [here](https://github.com/Microsoft/DockerTools/issues/77)
   - Development SQL server should be started on Docker when project starts.
@@ -64,6 +53,7 @@
   - If it works on developer's machine, then it will always work on production too. Docker eliminate chance of missing production dependency during deployment.
   - Developers can easily upgrade .NET version by switching the version number in dockerfile. Developer can utilize latest technology without relying on developer of build pack to release the upgrade.
   - Developers can customize additional software on the image running your app. Docker provides reliable way to install additional software on the OS level using Dockerfile. Developers are free to install additional packages on the OS. This makes infrastructure customizable by developers.
+- Create initial implementation of the project based on Ikechi Michael's [article](https://blog.devcenter.co/deploy-asp-net-core-2-0-apps-on-heroku-eea8efd918b6) to deploy Asp.net Core app with docker on Heroku.
 - Enable CD on git push for the project.
   - Heroku's built in functionality to create new deployment seems most strait forward. Looks like the will be work for long time without breaking and is very easy to get started with.
   - We had looked at doing CD by pushing image from Azure DevOps CD pipeline. But we decided to not take that route. The primary reason was that it required configuration done using the UI tool. There doesn't seem to be way to put those steps in config file and committing the configuration to repository, like you can do with Azure DevOps CI.
@@ -72,4 +62,14 @@
   - User need to explicitly specify if they need to run migration. This way app don't run migrations on release if developer want to run them manually. 
   - User's can easily switch DB by changing a single package and rerunning migrations.
   - Most app would need a way to persist data. PostgreSQL is supported and maintained by Heroku. Otherwise developers would need to setup and maintain DB solution somewhere else. It would be a time consuming task. We want to allow developer to get their app quickly off the ground.
-- Create project based on Ikechi Michael's [article](https://blog.devcenter.co/deploy-asp-net-core-2-0-apps-on-heroku-eea8efd918b6) to deploy Asp.net Core app with docker on Heroku.
+- Add implementation for background tasks. There are two ways to implement background tasks. Advantages and disadvantages for each technique are discussed below. We want to provide developers with fastest and easiest way to deploy the initial implementation of their ideas. You can easily move to more advanced approach once you validate you idea and have more resources.
+  1. Background tasks will be run in a web dyno. We have opted for this approach. [More info](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-2.2)
+     - If the dyno doesn't receive traffic for 30 minutes, then the dyno will goto sleep even though the background process is running.
+  1. Worker dyno to run background tasks in separate process.
+     - Disadvantages
+       - Currently there is no way to run only background tasks in the web project. Or to instruct project to start only web host.
+       - So, we have to add a new project and create separate assembly. We will also have to create service container in both the projects. This will create complexity and it will take more time to develop.
+     - Advantages
+       - This will allow logs for web and background process to stay isolated.
+       - Failure of one thread will not effect the other threads.
+       - You can scale web and worker independently.
