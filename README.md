@@ -12,6 +12,9 @@
 - Set Heroku project to use contaier: ```heroku stack:set container```
 - Push code to Heroku: ```git push heroku master```
 - Open website: ```heroku open```
+- #### Required files
+  - DockerfileWeb
+  - heroku.yml
 
 ### Enable automatic migration on deployment
 - Add 'Heroku Postgres' addin to the Heroku project
@@ -20,6 +23,12 @@
   ConnectionStrings__DefaultConnection=Host=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;Database=xxxxxxxxxxxxxx;Username=xxxxxxxxxxxxxx;Password=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;Integrated Security=true;Pooling=true;SslMode=Require;Trust Server Certificate=true;
   DefaultConnectionAutoMigrate=Enabled
   ```
+- #### Required files
+  - scripts/release-phase.sh
+
+### Enable partial CI
+- #### Required files
+  - scripts/test.sh
 
 ### Setting up Log monitoring
 - Default Heroku [Logplex](https://devcenter.heroku.com/articles/logplex) only saves last 1500 entries.
