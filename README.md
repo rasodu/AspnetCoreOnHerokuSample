@@ -11,8 +11,6 @@
 - Add Heroku git remote to your project : ```heroku git:remote -a <app-name>```
 - Set Heroku project to use contaier: ```heroku stack:set container```
 - Push code to Heroku: ```git push heroku master```
-- Scale worker dyno: ```heroku ps:scale worker1=1```
-- Verify worker and web dynos are running: ```heroku ps```
 - Open website: ```heroku open```
 
 ### Enable automatic migration on deployment
@@ -22,6 +20,10 @@
   ConnectionStrings__DefaultConnection=Host=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;Database=xxxxxxxxxxxxxx;Username=xxxxxxxxxxxxxx;Password=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;Integrated Security=true;Pooling=true;SslMode=Require;Trust Server Certificate=true;
   DefaultConnectionAutoMigrate=Enabled
   ```
+
+### Background tasks
+- Background tasks should be implemented using hosted services.
+- A single Asp.net Core web host process should be able to utilize all CPU cores if all actions are async.
 
 ### Faq
 - Which files do I need to copy to my project?
@@ -33,8 +35,4 @@
 - How can I run locally built image?
   ```
   docker run --rm -it --expose=5000 -p=5000:5000 -e="PORT=5000" -e="ASPNETCORE_ENVIRONMENT=Development" --net="host" web /bin/bash -c "cd src/Webapp/bin/Release/netcoreapp2.1/publish/ && ASPNETCORE_URLS=http://*:$PORT dotnet Webapp.dll"
-  ```
-- How can I run worker locally?
-  ```
-  docker run --rm -it -e="ASPNETCORE_ENVIRONMENT=Development" web /bin/bash -c "cd src/Worker1/bin/Release/netcoreapp2.1/publish/ && dotnet Worker1.dll"
   ```
