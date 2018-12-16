@@ -12,4 +12,4 @@ run:
 release:
   image: webbuilder
   command:
-    - ./heroku-release-phase.sh
+    - if [ ! -f heroku-release-phase.sh ]; then exit; fi && ./heroku-release-phase.sh
