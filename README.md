@@ -21,6 +21,10 @@
   DefaultConnectionAutoMigrate=Enabled
   ```
 
+### Setting up Log monitoring
+- Default Heroku [Logplex](https://devcenter.heroku.com/articles/logplex) only saves last 1500 entries.
+- Enable [Logentries](https://elements.heroku.com/addons/logentries) add-in over Logplex to save log for logger time and to have web UI to see/search logs.
+
 ### Background tasks
 - Background tasks should be implemented using hosted services.
 - A single Asp.net Core web host process should be able to utilize all CPU cores if all actions are async.

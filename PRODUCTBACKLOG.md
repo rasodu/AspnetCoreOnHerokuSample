@@ -4,8 +4,6 @@
   - Development SQL server should be started on Docker when project starts.
   - Development SQL server should be migrated on project startup.
   - Development SQL server should be seeded on project startup.
-- Provide steps to perform logging.
-  - There are a lot of third party addins. Currently, we are looking into implementing this by enabling [Logentries](https://elements.heroku.com/addons/logentries) addin over [Logplex](https://devcenter.heroku.com/articles/logplex).
 - Implement CI. This will allow us to test code. We are not implementing full CI. Our implementation and impediment to implementing full CI are listed below.
   - Two technical ways to implement this. They are discussed in Microsoft [documentation](https://docs.microsoft.com/en-us/azure/devops/pipelines/languages/docker?view=vsts&tabs=yaml#integrate-build-and-test-tasks). We are opting for Docker approach.
     1. Test in the build pipeline
@@ -73,3 +71,5 @@
        - This will allow logs for web and background process to stay isolated.
        - Failure of one thread will not effect the other threads.
        - You can scale web and worker independently.
+- Provide steps to perform logging.
+  - There are a lot of third party addins. Currently, we are looking into implementing this by enabling [Logentries](https://elements.heroku.com/addons/logentries) addin over [Logplex](https://devcenter.heroku.com/articles/logplex).
