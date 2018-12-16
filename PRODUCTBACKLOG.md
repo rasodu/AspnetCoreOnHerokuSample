@@ -4,24 +4,6 @@
   - Development SQL server should be started on Docker when project starts.
   - Development SQL server should be migrated on project startup.
   - Development SQL server should be seeded on project startup.
-- Implement CI. This will allow us to test code. We are not implementing full CI. Our implementation and impediment to implementing full CI are listed below.
-  - Two technical ways to implement this. They are discussed in Microsoft [documentation](https://docs.microsoft.com/en-us/azure/devops/pipelines/languages/docker?view=vsts&tabs=yaml#integrate-build-and-test-tasks). We are opting for Docker approach.
-    1. Test in the build pipeline
-       - With this approach the tool will be intelligently gather data from test run and create reports.
-       - But you may have to customize given environment with additional tools to have your code build and tested.
-    1. Test in docker
-       - You are already building the image for deployment. So not much effort is needed to setup the environment.
-       - Pipeline tool will not be able to pull test result.
-  - Types of CI. To keep the setup simple. We have decided to not do full CI at this point.
-    1. Full CI. This is what it means when we call CI.
-       - Each pull request will run all unit tests and show their status on pull request.
-       - There is no easy way to enable full CI. You need to purchase Heroku CI or user service like Azure DevOps which provide free CI time.
-       - We have decided to not enable full CI at this point. It will make setting up project more complicated. And we want to stick with Heroku.
-       - Developer can easy enable full CI support by making minor modifications.
-    1. Run test before deployment.
-       - This will make sure test are run successfully before each deployment. But it will not give developer feedback right when they are writing their code. In case tests fail, then developer may have to go back to the code that they have written earlier and fix the tests.
-       - If a unit test is failing, then developer will be unable to deploy the code.
-       - This approach will provide a runway that developers will be able to use to setup full CI.
 - Allow developers to use this project by simply copying files from this project to their project.
   - We have to allow ```webapp``` project name to be customized in docker file. We can implement this using ARG and ENV in docker file.
   - Stages that we want to have
@@ -73,3 +55,21 @@
        - You can scale web and worker independently.
 - Provide steps to perform logging.
   - There are a lot of third party addins. Currently, we are looking into implementing this by enabling [Logentries](https://elements.heroku.com/addons/logentries) addin over [Logplex](https://devcenter.heroku.com/articles/logplex).
+- Implement CI. This will allow us to test code. We are not implementing full CI. Our implementation and impediment to implementing full CI are listed below.
+  - Two technical ways to implement this. They are discussed in Microsoft [documentation](https://docs.microsoft.com/en-us/azure/devops/pipelines/languages/docker?view=vsts&tabs=yaml#integrate-build-and-test-tasks). We are opting for Docker approach.
+    1. Test in the build pipeline
+       - With this approach the tool will be intelligently gather data from test run and create reports.
+       - But you may have to customize given environment with additional tools to have your code build and tested.
+    1. Test in docker
+       - You are already building the image for deployment. So not much effort is needed to setup the environment.
+       - Pipeline tool will not be able to pull test result.
+  - Types of CI. To keep the setup simple. We have decided to not do full CI at this point.
+    1. Full CI. This is what it means when we call CI.
+       - Each pull request will run all unit tests and show their status on pull request.
+       - There is no easy way to enable full CI. You need to purchase Heroku CI or user service like Azure DevOps which provide free CI time.
+       - We have decided to not enable full CI at this point. It will make setting up project more complicated. And we want to stick with Heroku.
+       - Developer can easy enable full CI support by making minor modifications.
+    1. Run test before deployment.
+       - This will make sure test are run successfully before each deployment. But it will not give developer feedback right when they are writing their code. In case tests fail, then developer may have to go back to the code that they have written earlier and fix the tests.
+       - If a unit test is failing, then developer will be unable to deploy the code.
+       - This approach will provide a runway that developers will be able to use to setup full CI.
