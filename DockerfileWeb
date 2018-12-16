@@ -2,7 +2,7 @@ FROM microsoft/dotnet:2.1-sdk AS builder
 WORKDIR /appsrc
 COPY . .
 #Replace DOS new line with unix new line. Otherwise script will not run if it was written on windows machine.
-RUN if [ ! -f heroku-release-phase.sh ]; then exit; fi && tr -d '\015' < heroku-release-phase.sh > heroku-release-phase.sh && chmod 777 heroku-release-phase.sh
+RUN if [ ! -f scripts/release-phase.sh ]; then exit; fi && tr -d '\015' < scripts/release-phase.sh > scripts/release-phase.sh && chmod 777 scripts/release-phase.sh
 RUN if [ ! -f scripts/test.sh ]; then exit; fi && tr -d '\015' < scripts/test.sh > scripts/test.sh && chmod 777 scripts/test.sh && . scripts/test.sh
 RUN dotnet publish -c Release
 
