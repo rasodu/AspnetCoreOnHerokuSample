@@ -21,13 +21,18 @@
     - Minimum for deployment: ```DockerfileWebapp``` and ```Heroku.yml```
     - Release phase and automatic migrations: ```release_phase.sh```
     - Partial CI - test code before deplyment: ```tests.sh``` 
-- Look into possibility to enable new Relic for Heroku. More [here](http://blog.avenuecode.com/tricks-for-configuring-new-relic-for-.net-core) and [here](https://docs.newrelic.com/docs/agents/net-agent/installation/new-relic-net-agent-install-introduction#common-installs)
+- Look into a way to monitor application server's resource usage.(RAM, bandwidth, CPU usage)
+  - Look into possibility to enable new Relic for Heroku. More [here](http://blog.avenuecode.com/tricks-for-configuring-new-relic-for-.net-core) and [here](https://docs.newrelic.com/docs/agents/net-agent/installation/new-relic-net-agent-install-introduction#common-installs)
   - Let developer know when it is time to scale fleet of dynos.
   - Let developer know about inefficient parts of their application.
+- Look into a way to monitor resources used by DB server.
 - Add files that list all tools needed when using the project and when developing the project.
 - This about creating a NuGet package that will add the functionalities to existing project.
 - Add steps to upgrade version of .NET
 - Add steps to change project name. 
+- Analyze how Heroku's [build limits](https://devcenter.heroku.com/articles/limits#build) can potentially effect our project.
+- Make a note of Heroku's [load testing](https://devcenter.heroku.com/articles/load-testing-guidelines#common-runtime-limits) limits.
+- How to async lock. One of the way is to use [Nito.AsyncEx](https://www.nuget.org/packages/Nito.AsyncEx/).
 
 ### Implemented
 - Deploy on Heroku. Below, we are documenting the reasons to choose Heroku over other solutions(Kubernetes or other containerized workload management technology.)
