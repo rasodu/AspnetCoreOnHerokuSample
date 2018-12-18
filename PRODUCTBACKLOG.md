@@ -1,3 +1,14 @@
+### Goals
+- Reasons
+  - Product owner, working on a new idea, want to deploy their application quickly. They want to validate their product.
+  - Developing a solution that scales vertically allows developers to keep code simple.
+  - Development time for software that will be scaled vertically is less compare to the development time for the software that scales horizontally.
+  - Infrastructure need to deploy vertical application is less complicated compared to application that is design with horizontal scaling in mind.
+  - Asp.net Core can handle tens of thousands requests per seconds with vertical scaling. Here is the [bechmark](https://www.techempower.com/benchmarks/) and [article](https://www.techempower.com/blog/2016/11/16/framework-benchmarks-round-13/). If you move your application to a large machine on a public cloud, then it can handle thousands to customers without you needing to scale horizontally for a long time.
+- Strategy we will follow
+  - Vertical scaling over horizontal scaling.(If application is successful, then developer can spend time fixing scaling problem.)
+  - Deployment ease should be pay a role when choosing an implementation for a feature.
+
 ### Stories
 - Should enable Docker support in visual studio project. So, the developers will not need to download .NET SDK to development on their machine.
   - **Will not be implemented yet.** Looks like Visual Studio support for Docker is in primitive stage. Currently, there is no way to run and debug unit tests in Docker container. More, [here](https://techblog.dorogin.com/running-and-debugging-net-core-unit-tests-inside-docker-containers-48476eda2d2a) and [here](https://github.com/Microsoft/DockerTools/issues/77)
