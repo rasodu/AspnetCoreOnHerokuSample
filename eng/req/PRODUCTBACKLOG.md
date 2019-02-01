@@ -35,11 +35,6 @@
 - How to async lock. One of the way is to use [Nito.AsyncEx](https://www.nuget.org/packages/Nito.AsyncEx/).
 
 ### Implemented
-- Deploy using docker image.
-  - There is a possibility that a build pack could fail. Docker provides very reliable way to run projects in production.
-  - If it works on developer's machine, then it will always work on production too. Docker eliminate chance of missing production dependency during deployment.
-  - Developers can easily upgrade .NET version by switching the version number in dockerfile. Developer can utilize latest technology without relying on developer of build pack to release the upgrade.
-  - Developers can customize additional software on the image running your app. Docker provides reliable way to install additional software on the OS level using Dockerfile. Developers are free to install additional packages on the OS. This makes infrastructure customizable by developers.
 - Upgrade policy. Our upgrade policy will follow [dotnet](https://dotnet.microsoft.com/platform/support-policy) upgrade policy.
   - We will only upgrade to Asp.net Core LTS version. We will ignore current versions. Though, we will add new features that we want to add to product in backlog based on the new features introduced in current version. But we will not upgrade to current version because features added in the release are usually unstable. Implementation of new feature can change from current to LTS version release.
 - Create initial implementation of the project based on Ikechi Michael's [article](https://blog.devcenter.co/deploy-asp-net-core-2-0-apps-on-heroku-eea8efd918b6) to deploy Asp.net Core app with docker on Heroku.
