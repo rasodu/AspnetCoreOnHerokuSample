@@ -35,15 +35,6 @@
 - How to async lock. One of the way is to use [Nito.AsyncEx](https://www.nuget.org/packages/Nito.AsyncEx/).
 
 ### Implemented
-- Deploy on Heroku. Below, we are documenting the reasons to choose Heroku over other solutions(Kubernetes or other containerized workload management technology.)
-  - The aim of the project is to provide fastest way to deploy the project. Heroku's services free developers from setting up a lot of things that they need to run production level web application. 
-  - Production website should use SSL certificate. Heroku manages SSL. There is a lot of work involved in using and managing SSL certificates.
-  - You will also need load balancer. Heroku takes care of this too.
-  - Logging works out of the box. You would need a way to aggregate logs from multiple containers in Docker solutions.
-  - Pipeline is another advantage. You can quickly setup test app. Without Heroku you need to setup mirror of production infrastructure for test releases.(Though, at this point Heroku doesn't allow pipeline upgrades for Docker projects)
-  - Heroku also provide quick way to put website in maintenance mode. With other approaches you need to configure a way to do something similar.
-  - Heroku push to deploy works out of the box. With Kubernetes would need to setup something separate to enable this. CD is implemented right into Heroku.
-  - You would need to maintain the cluster with Kubernetes or other containerized workload management technology.
 - Deploy using docker image.
   - There is a possibility that a build pack could fail. Docker provides very reliable way to run projects in production.
   - If it works on developer's machine, then it will always work on production too. Docker eliminate chance of missing production dependency during deployment.
