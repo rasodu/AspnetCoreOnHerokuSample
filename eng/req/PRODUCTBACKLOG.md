@@ -35,8 +35,6 @@
 - How to async lock. One of the way is to use [Nito.AsyncEx](https://www.nuget.org/packages/Nito.AsyncEx/).
 
 ### Implemented
-- Upgrade policy. Our upgrade policy will follow [dotnet](https://dotnet.microsoft.com/platform/support-policy) upgrade policy.
-  - We will only upgrade to Asp.net Core LTS version. We will ignore current versions. Though, we will add new features that we want to add to product in backlog based on the new features introduced in current version. But we will not upgrade to current version because features added in the release are usually unstable. Implementation of new feature can change from current to LTS version release.
 - Create initial implementation of the project based on Ikechi Michael's [article](https://blog.devcenter.co/deploy-asp-net-core-2-0-apps-on-heroku-eea8efd918b6) to deploy Asp.net Core app with docker on Heroku.
 - We are naming Dockerfile for the project "DockerfileWeb" instead of "Dockerfile.Web". "Dockerfile.Web" is Heroku naming convention. Command [heroku container:push --recursive](https://devcenter.heroku.com/articles/container-registry-and-runtime#pushing-multiple-images) will push all dockerfile in current directory that follow convention. We don't want these images to be pushed incase user typed the command by mistake. Deploying this way will not run release tasks. Naming file this way will make sure that the images are not pushed by mistake.  
 - Enable CD on git push for the project.
