@@ -36,7 +36,6 @@
 
 ### Implemented
 - Create initial implementation of the project based on Ikechi Michael's [article](https://blog.devcenter.co/deploy-asp-net-core-2-0-apps-on-heroku-eea8efd918b6) to deploy Asp.net Core app with docker on Heroku.
-- Add a way to easily add release tasks.
 - DB migration on new release. We will use PostgreSQL as default DB.
   - Options
     - Code first
