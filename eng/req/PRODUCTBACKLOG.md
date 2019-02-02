@@ -36,9 +36,6 @@
 
 ### Implemented
 - Create initial implementation of the project based on Ikechi Michael's [article](https://blog.devcenter.co/deploy-asp-net-core-2-0-apps-on-heroku-eea8efd918b6) to deploy Asp.net Core app with docker on Heroku.
-- Enable CD on git push for the project.
-  - Heroku's built in functionality to create new deployment seems most strait forward. Looks like the will be work for long time without breaking and is very easy to get started with.
-  - We had looked at doing CD by pushing image from Azure DevOps CD pipeline. But we decided to not take that route. The primary reason was that it required configuration done using the UI tool. There doesn't seem to be way to put those steps in config file and committing the configuration to repository, like you can do with Azure DevOps CI.
 - Add a way to easily add release tasks.
 - DB migration on new release. We will use PostgreSQL as default DB.
   - Options
