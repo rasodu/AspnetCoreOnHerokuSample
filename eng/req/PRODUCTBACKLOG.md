@@ -36,28 +36,6 @@
 
 ### Implemented
 - Create initial implementation of the project based on Ikechi Michael's [article](https://blog.devcenter.co/deploy-asp-net-core-2-0-apps-on-heroku-eea8efd918b6) to deploy Asp.net Core app with docker on Heroku.
-- DB migration on new release. We will use PostgreSQL as default DB.
-  - Options
-    - Code first
-      - How to [seed](https://www.learnentityframeworkcore.com/migrations/seeding) database?
-      - What are [snapshot](https://channel9.msdn.com/Blogs/EF/Migrations-Under-the-Hood) files?
-      - How to resolve code [conflict](https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/teams#merging)?
-      - Should you use data annotation on model fluent API?
-      - How to check snapshot file is in good condition when upgrading database package? - Run ```Add-migrations <name> -IgnoreChanges``` and make sure there are no changes in snapshot file.
-    - DB first
-    - Code first from existing DB
-      - How to do this [here](https://channel9.msdn.com/blogs/ef/migrations-existing-databases) and [here](https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/migrations/existing-database)?
-    - SSDT project for database
-      - This project types can not be compiled without MsBuild.
-      - So if we want to use this we would need to change deployment strategy.
-      - Since we have to use DB first approach with this method, it will also make code complicated.
-  - Implementation
-    - User need to explicitly specify if they need to run migration. This way app don't run migrations on release if developer want to run them manually. 
-    - User's can easily switch DB by changing a single package and rerunning migrations.
-    - Most app would need a way to persist data. PostgreSQL is supported and maintained by Heroku. Otherwise developers would need to setup and maintain DB solution somewhere else. It would be a time consuming task. We want to allow developer to get their app quickly off the ground.
-  - Settings
-    - Set SqlConnection pool number and SqlConnection timeout number. Append ```Minimum Pool Size=19;Maximum Pool Size=19;Timeout=30;Command Timeout=30;``` to SQL connection string. Refs: [here](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql-server-connection-pooling#adding-connections) and [here](https://devcenter.heroku.com/articles/heroku-postgres-plans#hobby-tier) and [here](https://www.npgsql.org/doc/connection-string-parameters.html#pooling)
-    - Use ```services.AddDBContextPool<DBContext>(options => options.UseSQLServer("ConnectionString"));```. Refs: [here](https://github.com/aspnet/EntityFrameworkCore/issues/10125) and [here](https://neelbhatt.com/2018/02/27/use-dbcontextpooling-to-improve-the-performance-net-core-2-1-feature/)
 - Add implementation for background tasks. There are two ways to implement background tasks. Advantages and disadvantages for each technique are discussed below. We want to provide developers with fastest and easiest way to deploy the initial implementation of their ideas. You can easily move to more advanced approach once you validate you idea and have more resources.
   1. Background tasks will be run in a web dyno. We have opted for this approach. [More info](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-2.2)
      - If the dyno doesn't receive traffic for 30 minutes, then the dyno will goto sleep even though the background process is running.
