@@ -13,7 +13,7 @@ COPY --from=builder /appsrc/src/ ./src
 # Command to run the image
 CMD echo "Please give explicit command to run the image."
 # install New Relic APM
-RUN wget -O newrelic-netcore20-agent.deb 'https://download.newrelic.com/dot_net_agent/latest_release/newrelic-netcore20-agent_8.12.216.0_amd64.deb' && sudo dpkg -i newrelic-netcore20-agent.deb && rm newrelic-netcore20-agent.deb
+RUN apt-get install wget && wget -O newrelic-netcore20-agent.deb 'https://download.newrelic.com/dot_net_agent/latest_release/newrelic-netcore20-agent_8.12.216.0_amd64.deb' && dpkg -i newrelic-netcore20-agent.deb && rm newrelic-netcore20-agent.deb
 ENV CORECLR_ENABLE_PROFILING=1 \
 CORECLR_PROFILER={36032161-FFC0-4B61-B559-F6C5D41BAE5A} \
 CORECLR_NEWRELIC_HOME=/usr/local/newrelic-netcore20-agent \
