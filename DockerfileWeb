@@ -12,3 +12,5 @@ WORKDIR /app
 COPY --from=builder /appsrc/src/ ./src
 # Command to run the image
 CMD echo "Please give explicit command to run the image."
+# install New Relic APM
+RUN if [ ! -f scripts/install-new-relic.sh ]; then exit; fi && tr -d '\015' < scripts/install-new-relic.sh > scripts/install-new-relic.sh && chmod 777 scripts/install-new-relic.sh && . scripts/install-new-relic.sh
