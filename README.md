@@ -30,6 +30,19 @@
 - #### Required files
   - scripts/test.sh
 
+### Enable New Relic
+- Add "New Relic" add-in to your application
+- Set "Config Vars" for the Heroku application:
+  ```
+  CORECLR_PROFILER={36032161-FFC0-4B61-B559-F6C5D41BAE5A}
+  CORECLR_NEWRELIC_HOME=/usr/local/newrelic-netcore20-agent
+  CORECLR_PROFILER_PATH=/usr/local/newrelic-netcore20-agent/libNewRelicProfiler.so
+  NEW_RELIC_APP_NAME=YOUR_APP_NAME
+  NEW_RELIC_LICENSE_KEY=YOUR_LICENSE_KEY  <= This should appear by default if you add New Relic add-in in you Heroku app
+  ```
+- #### Required files
+  - scripts/install-new-relic.sh
+
 ### Setting up Log monitoring
 - Default Heroku [Logplex](https://devcenter.heroku.com/articles/logplex) only saves last 1500 entries.
 - Enable [Logentries](https://elements.heroku.com/addons/logentries) add-in over Logplex to save log for logger time and to have web UI to see/search logs.

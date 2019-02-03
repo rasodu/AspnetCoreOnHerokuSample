@@ -38,3 +38,15 @@
 - Create initial implementation of the project based on Ikechi Michael's [article](https://blog.devcenter.co/deploy-asp-net-core-2-0-apps-on-heroku-eea8efd918b6) to deploy Asp.net Core app with docker on Heroku.
 - Provide steps to perform logging.
   - There are a lot of third party addins. Currently, we are looking into implementing this by enabling [Logentries](https://elements.heroku.com/addons/logentries) addin over [Logplex](https://devcenter.heroku.com/articles/logplex).
+- Enable APM functionality
+  - Use New Relic
+    - Pros:
+      - Heroku has an add-in to quickly enable this.
+    - Cons:
+      - Very expensive. No free version is available.
+      - Script may require to update the new relic deb link frequently. Could potentially break your docker file. But fix it is very easy.
+    - Note:
+      - Quick overview of New Relic [dashboard](https://www.youtube.com/watch?v=EGMacfyuA9w).
+      - [Install notes](https://docs.newrelic.com/docs/agents/net-agent/install-guides/install-net-core-agent-microsoft-docker-container#linux) on how to enable New Relic on .NET Core containers.
+  - Notes:
+    - Used New Relic for provide this functionality
