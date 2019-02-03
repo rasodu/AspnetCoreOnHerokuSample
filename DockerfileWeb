@@ -10,6 +10,7 @@ FROM microsoft/dotnet:2.1-aspnetcore-runtime
 WORKDIR /app
 # Copy published artifact for each project here and then copy release phase file.
 COPY --from=builder /appsrc/src/ ./src
+COPY --from=builder /appsrc/scripts/ ./scripts
 # Command to run the image
 CMD echo "Please give explicit command to run the image."
 # install New Relic APM
