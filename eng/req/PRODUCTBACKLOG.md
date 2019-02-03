@@ -36,17 +36,6 @@
 
 ### Implemented
 - Create initial implementation of the project based on Ikechi Michael's [article](https://blog.devcenter.co/deploy-asp-net-core-2-0-apps-on-heroku-eea8efd918b6) to deploy Asp.net Core app with docker on Heroku.
-- Add implementation for background tasks. There are two ways to implement background tasks. Advantages and disadvantages for each technique are discussed below. We want to provide developers with fastest and easiest way to deploy the initial implementation of their ideas. You can easily move to more advanced approach once you validate you idea and have more resources.
-  1. Background tasks will be run in a web dyno. We have opted for this approach. [More info](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-2.2)
-     - If the dyno doesn't receive traffic for 30 minutes, then the dyno will goto sleep even though the background process is running.
-  1. Worker dyno to run background tasks in separate process.
-     - Disadvantages
-       - Currently there is no way to run only background tasks in the web project. Or to instruct project to start only web host.
-       - So, we have to add a new project and create separate assembly. We will also have to create service container in both the projects. This will create complexity and it will take more time to develop.
-     - Advantages
-       - This will allow logs for web and background process to stay isolated.
-       - Failure of one thread will not effect the other threads.
-       - You can scale web and worker independently.
 - Provide steps to perform logging.
   - There are a lot of third party addins. Currently, we are looking into implementing this by enabling [Logentries](https://elements.heroku.com/addons/logentries) addin over [Logplex](https://devcenter.heroku.com/articles/logplex).
 - Implement CI. This will allow us to test code. We are not implementing full CI. Our implementation and impediment to implementing full CI are listed below.
