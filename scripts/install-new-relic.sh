@@ -1,5 +1,5 @@
 #!/bin/sh
-#Line ending in this fie must be unix line ending. 'vi <file>' => :set fileformat=unix => wq
+#Line ending in this fie must be unix line ending. We unsure this via setting in '.gitattribute' file.
 set -e
 set -o verbose
 echo "This command will be executed during building Web image. It will install New Relic. Define 'NEW_RELIC_LICENSE_KEY' and 'NEW_RELIC_APP_NAME' for your applicaiton."
