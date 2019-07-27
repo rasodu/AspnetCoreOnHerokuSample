@@ -16,6 +16,12 @@
   - DockerfileWeb
   - heroku.yml
 
+### Enable session affinity
+- More information on session affinity [here](https://devcenter.heroku.com/articles/session-affinity). Execute command below to enable session affinity.
+  ```
+  heroku features:enable http-session-affinity
+  ```
+
 ### Enable automatic migration on deployment
 - Add 'Heroku Postgres' addin to the Heroku project
 - Set additional "Config Vars" for the Heroku application:
