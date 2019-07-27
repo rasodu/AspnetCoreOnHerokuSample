@@ -2,8 +2,8 @@ FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS builder
 WORKDIR /appsrc
 COPY . .
 #Replace DOS new line with unix new line. Otherwise script will not run if it was written on windows machine.
-RUN if [ ! -f scripts/release-phase.sh ]; then exit; fi && tr -d '\015' < scripts/release-phase.sh > scripts/release-phase.sh && chmod 777 scripts/release-phase.sh
-RUN if [ ! -f scripts/test.sh ]; then exit; fi && tr -d '\015' < scripts/test.sh > scripts/test.sh && chmod 777 scripts/test.sh && . scripts/test.sh
+RUN if [ ! -f scripts/release-phase.sh ]; then exit; fi && chmod 777 scripts/release-phase.sh
+RUN if [ ! -f scripts/test.sh ]; then exit; fi && chmod 777 scripts/test.sh && . scripts/test.sh
 RUN dotnet publish -c Release
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.1
@@ -14,4 +14,4 @@ COPY --from=builder /appsrc/scripts/ ./scripts
 # Command to run the image
 CMD echo "Please give explicit command to run the image."
 # install New Relic APM
-RUN if [ ! -f scripts/install-new-relic.sh ]; then exit; fi && tr -d '\015' < scripts/install-new-relic.sh > scripts/install-new-relic.sh && chmod 777 scripts/install-new-relic.sh && . scripts/install-new-relic.sh
+RUN if [ ! -f scripts/install-new-relic.sh ]; then exit; fi && chmod 777 scripts/install-new-relic.sh && . scripts/install-new-relic.sh
