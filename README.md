@@ -69,3 +69,6 @@
   ```
   docker run --rm -it --expose=5000 -p=5000:5000 -e="PORT=5000" -e="ASPNETCORE_ENVIRONMENT=Development" --net="host" web /bin/bash -c "cd src/Webapp/bin/Release/netcoreapp2.1/publish/ && ASPNETCORE_URLS=http://*:$PORT dotnet Webapp.dll"
   ```
+- Where can I see sample website?
+  - **master** branch is deployed at [https://aspnet-core-on-heroku-sample.herokuapp.com](https://aspnet-core-on-heroku-sample.herokuapp.com)
+  - **develop** branch is deployed at [https://stage-aspnet-core-on-heroku.herokuapp.com](https://stage-aspnet-core-on-heroku.herokuapp.com)
