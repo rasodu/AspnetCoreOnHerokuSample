@@ -102,15 +102,9 @@
   ```
   dokku apps:create aspnet-core-on-heroku-sample
   ```
-- Add letsencrypt
-  ```
-  dokku config:set --no-restart aspnet-core-on-heroku-sample DOKKU_LETSENCRYPT_EMAIL=<youremail@example.com>
-  dokku letsencrypt aspnet-core-on-heroku-sample
-  dokku letsencrypt:cron-job --add aspnet-core-on-heroku-sample
-  ```
 - Setup config vars. Use command: ```dokku config:set aspnet-core-on-heroku-sample KEY="VAL\ WITH\ SPACES"```
   ```
-  dokku config:set DOKKU_DOCKERFILE_CACHE_BUILD=true <- dcrease build time
+  dokku config:set aspnet-core-on-heroku-sample DOKKU_DOCKERFILE_CACHE_BUILD=true <- dcrease build time
   dokku config:set aspnet-core-on-heroku-sample PORT="5000"
   dokku config:set aspnet-core-on-heroku-sample DOKKU_DOCKERFILE_PORT="5000"
   <AND VARS FROM CONFIG SECTION  ABOVE>
@@ -122,6 +116,12 @@
 - Push the code to repository:
   ```
   git push dokku master
+  ```
+- Add letsencrypt
+  ```
+  dokku config:set --no-restart aspnet-core-on-heroku-sample DOKKU_LETSENCRYPT_EMAIL=<youremail@example.com>
+  dokku letsencrypt aspnet-core-on-heroku-sample
+  dokku letsencrypt:cron-job --add aspnet-core-on-heroku-sample
   ```
 
 ### Other FAQ
@@ -145,7 +145,8 @@
   ```
 - URL commands
   ```
-  dokku urls <app-name> -> list all domains configured for an application
+  dokku urls <app-name>                      -> list all domains configured for an application
+  dokku domains:add <app-name> <domain>.com  -> add domain name
   ```
 - Dokku build, rebuild and cleanup commands commands
   ```
