@@ -1,0 +1,7 @@
+src/Webapp/ClientApp/node_modules
+
+src/Webapp/bin
+src/Webapp/obj
+
+test/Webapp.Tests/bin
+test/Webapp.Tests/obj

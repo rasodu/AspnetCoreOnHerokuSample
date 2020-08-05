@@ -8,7 +8,7 @@ run:
   web:
     image: web
     command:
-      - /bin/bash -c "cd src/Webapp/bin/Release/netcoreapp2.1/publish/ && ASPNETCORE_URLS=http://*:$PORT dotnet Webapp.dll"
+      - /bin/bash -c "cd src/Webapp/bin/Release/net5.0/publish/ && ASPNETCORE_URLS=http://*:$PORT dotnet Webapp.dll"
 release:
   image: webbuilder
   command:
