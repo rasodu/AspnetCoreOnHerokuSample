@@ -72,3 +72,91 @@
 - Where can I see sample website?
   - **master** branch is deployed at [https://aspnet-core-on-heroku-sample.herokuapp.com](https://aspnet-core-on-heroku-sample.herokuapp.com)
   - **develop** branch is deployed at [https://stage-aspnet-core-on-heroku.herokuapp.com](https://stage-aspnet-core-on-heroku.herokuapp.com)
+
+<br/>
+<hr/>
+<hr/>
+<hr/>
+
+### Deploy on Dokku(Not officially supported. Not all features are supported.)
+- Clone the project to your computer:
+  ```
+  git clone "git@github.com:rasodu/AspnetCoreOnHerokuSample.git"
+  ```
+- Delete some files:
+  ```
+  mv DockerfileWeb Dockerfile
+  rm heroku.yml
+  rm scripts/release-phase.sh
+  rm scripts/install-new-relic.sh
+  ```
+- Change run command in Docker file:
+  ```
+  CMD cd src/Webapp/bin/Release/netcoreapp2.1/publish/ && ASPNETCORE_URLS=http://*:$PORT dotnet Webapp.dll
+  ```
+- Commit the changes:
+  ```
+  git add . && git commit -m "Modify to support Dokku."
+  ```
+- Create a new Dokku app:
+  ```
+  dokku apps:create aspnet-core-on-heroku-sample
+  ```
+- Setup config vars. Use command: ```dokku config:set aspnet-core-on-heroku-sample KEY="VAL\ WITH\ SPACES"```
+  ```
+  dokku config:set aspnet-core-on-heroku-sample DOKKU_DOCKERFILE_CACHE_BUILD=true <- dcrease build time
+  dokku config:set aspnet-core-on-heroku-sample PORT="5000"
+  dokku config:set aspnet-core-on-heroku-sample DOKKU_DOCKERFILE_PORT="5000"
+  <AND VARS FROM CONFIG SECTION  ABOVE>
+  ```
+- Add git remote:
+  ```
+  git remote add dokku dokku@<domain>.com:aspnet-core-on-heroku-sample
+  ```
+- Push the code to repository:
+  ```
+  git push dokku master
+  ```
+- Add letsencrypt
+  ```
+  dokku config:set --no-restart aspnet-core-on-heroku-sample DOKKU_LETSENCRYPT_EMAIL=<youremail@example.com>
+  dokku letsencrypt aspnet-core-on-heroku-sample
+  dokku letsencrypt:cron-job --add aspnet-core-on-heroku-sample
+  ```
+
+### Other FAQ
+- List all Dokku apps
+  ```
+  ssh root@apps.rasodu.com && dokku apps:list
+  OR
+  ssh dokku@apps.rasodu.com apps:list
+  ```
+- Maintenance commands
+  ```
+  dokku maintenance <app-name>    -> find maintenance status of the application
+  dokku maintenance:on my-app     -> turn on maintenance mode
+  dokku maintenance:off my-app    -> turn off maintenance mode
+  ```
+- Configuration commands
+  ```
+  dokku config <app-name>                               -> list all env names and they values
+  dokku config:set <app-name> <env-name>=<env-value>    -> set a variable
+  dokku config:unset <app-name> <env-name>              -> unset a variable
+  ```
+- URL commands
+  ```
+  dokku urls <app-name>                      -> list all domains configured for an application
+  dokku domains:add <app-name> <domain>.com  -> add domain name
+  ```
+- Dokku build, rebuild and cleanup commands commands
+  ```
+  dokku ps:rebuild <app-name>     -> Rebuild the application
+  dokku ps:restart <app-name>     -> Rebuild the application
+  dokku cleanup                   -> Remove extra contianers
+  ```
+- Other information
+  ```
+  dokku --trace apps -> location of plugin folder
+    - PLUGIN_PATH=/var/lib/dokku/plugins, PLUGIN_CORE_PATH=/var/lib/dokku/core-plugins
+    - /home/dokku/<app-name>/ -> Home folder for an application
+  ```
